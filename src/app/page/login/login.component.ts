@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
     let user='olluco';
     let pass='1234';
     if(name==user && passW==pass){
-      localStorage.setItem(name,passW)
+      localStorage.setItem('name',name)
+      localStorage.setItem('pass',pass)
       console.log('inicio de sesion exitos')
     }
-    
   }
 
 }
