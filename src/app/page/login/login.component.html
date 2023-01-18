@@ -1,0 +1,19 @@
+<form [formGroup]="form">
+  <div>
+    <label for="name">Nombre</label>
+    <input type="text" id="name" name="name" formControlName="name" #name>
+  </div>
+  <div>
+    <label for="pass">Contraseña</label>
+    <input type="password" id="pass" name="pass" formControlName="pass" #pass>
+  </div>
+  <div>
+    <p>
+      {{form.value | json}}
+    </p>
+    <p>
+      {{form.valid}}
+    </p>
+    <button (click)="validar(name.value, pass.value)">Iniciar sesión</button>
+  </div>
+</form>
