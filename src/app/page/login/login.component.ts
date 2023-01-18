@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   public form!:FormGroup;
+  userJson!:any[]
   constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
@@ -24,14 +26,24 @@ export class LoginComponent implements OnInit {
       ]
     })
   }
-  validar(name:string, passW:string){
-    let user='olluco';
-    let pass='1234';
-    if(name==user && passW==pass){
-      localStorage.setItem('name',name)
-      localStorage.setItem('pass',pass)
-      console.log('inicio de sesion exitos')
+  validar(){
+    let user=localStorage.getItem('user')
+    if(user!=null) this.userJson=JSON.parse(user)
+    for (let i of this.userJson){
+      if(i.name==this.form.value.name && i.pass==this.form.value.pass){
+        localStorage.setItem('logeado','true')
+        this.form.reset()
+        break
+      }else{
+        localStorage.setItem('logeado','false')
+        Swal.fire({
+          icon:'error',
+          title:'contraseña o username incorrecta',
+          heightAuto: false
+        })
+      }
     }
+    
   }
 
 }

@@ -7,4 +7,9 @@
 }
 body{
   height: 100vh;
+  background: linear-gradient(
+    to top,
+    rgba(128, 128, 128, 0.808),
+    rgba(128, 128, 128, 0.336)
+  );
 }
