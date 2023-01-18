@@ -6,12 +6,13 @@ import { LoginComponent } from './page/login/login.component';
 import { RespuestaComponent } from './page/respuesta/respuesta.component';
 import { PermisoGuard } from './guards/permiso.guard';
 import { PermisoSalirGuard } from './guards/permiso-salir.guard';
+import { PermisoMasterGuard } from './guards/permiso-master.guard';
 
 const routes: Routes = [
   {path:'home', component:HomeComponent, canActivate:[PermisoGuard]},
   {path:'login', component:LoginComponent},
   {path:'rpta', component:RespuestaComponent, canActivate:[PermisoGuard]},
-  {path:'form', component:FormComponent, canActivate:[PermisoGuard], canDeactivate:[PermisoSalirGuard]},
+  {path:'form', component:FormComponent, canActivate:[PermisoMasterGuard], canDeactivate:[PermisoSalirGuard]},
   {path:'', redirectTo:'/login', pathMatch:'full'}
 ];
 

@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root'
 })
-export class PermisoGuard implements CanActivate {
+export class PermisoMasterGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -14,7 +14,7 @@ export class PermisoGuard implements CanActivate {
     else {
       Swal.fire({
         icon:'info',
-        title:'Acceso solo para usuarios logeados',
+        title:'Acceso solo para el Admin',
         heightAuto:false
       })
       return false
@@ -23,7 +23,7 @@ export class PermisoGuard implements CanActivate {
 
   login(){
     let statusValidate=JSON.parse(localStorage.getItem('logeado') || '{}');
-    if(statusValidate.status) return true
+    if(statusValidate.name=='master') return true
     else return false
   }
   

@@ -31,19 +31,34 @@ export class LoginComponent implements OnInit {
     if(user!=null) this.userJson=JSON.parse(user)
     for (let i of this.userJson){
       if(i.name==this.form.value.name && i.pass==this.form.value.pass){
-        localStorage.setItem('logeado','true')
+        let user={
+          status:true,
+          name:this.form.value.name,
+          pass:this.form.value.pass
+        }
+        localStorage.setItem('logeado',JSON.stringify(user))
         this.form.reset()
         break
       }else{
-        localStorage.setItem('logeado','false')
-        Swal.fire({
-          icon:'error',
-          title:'contraseña o username incorrecta',
-          heightAuto: false
-        })
+        let user={
+          status:false
+        }
+        localStorage.setItem('logeado',JSON.stringify(user))
       }
     }
-    
+    if((JSON.parse(localStorage.getItem('logeado')||'{}')).status){
+      Swal.fire({
+        icon:'success',
+        title:'Bienvenido',
+        heightAuto: false
+      })
+    }else{
+      Swal.fire({
+        icon:'error',
+        title:'contraseña o username incorrecta',
+        heightAuto: false
+      })
+    }
   }
 
 }
