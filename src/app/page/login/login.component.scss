@@ -7,9 +7,10 @@
 }
 /* grid para la vista del formulario---------------------- */
 .form{
+    background-color: aliceblue;
     display: grid;
-    grid-template:repeat(3, min-content)/1fr 3fr ;
+    grid-template:repeat(3, min-content)/1fr;
 }
-.boton{
-    grid-column: span 2;
+.example-form-field {
+    width: 100%;
 }

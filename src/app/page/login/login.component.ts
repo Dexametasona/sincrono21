@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import Swal from 'sweetalert2'
 
 @Component({
@@ -9,6 +10,7 @@ import Swal from 'sweetalert2'
 })
 export class LoginComponent implements OnInit {
   public form!:FormGroup;
+  value='clear'
   userJson!:any[] /*variable para almacenar la lista de usuarios*/
 
   constructor(private fb:FormBuilder) { }
