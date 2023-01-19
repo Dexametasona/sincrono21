@@ -12,25 +12,34 @@ export class AppComponent implements OnInit {
   master=[{name:'master', pass:'1234'}]
   constructor(private route:Router){}
   logout(){
-    Swal.fire({
-        title: 'Seguro que desea cerrar sesión',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si',
+    let estado=JSON.parse(localStorage.getItem('logeado')||'{}')
+    if(estado.status){
+      Swal.fire({
+          title: 'Seguro que desea cerrar sesión',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si',
+          heightAuto:false
+        }).then((result) => {
+          if (result.isConfirmed){
+            localStorage.setItem('logeado','{"status":false}')
+            localStorage.setItem('complete','{"campos":0,"reg":true}')
+            this.route.navigate(["/login"])
+          }
+      })  
+    }else{
+      Swal.fire({
+        icon:'question',
+        title:'No hay usuario logeado',
         heightAuto:false
-      }).then((result) => {
-        if (result.isConfirmed){
-          localStorage.setItem('logeado','{"status":false}')
-          this.route.navigate(["/login"])
-        }
-    })
-    
+      })
+    }
   }
 
   ngOnInit(): void {
-    let user=JSON.parse(localStorage.getItem('user')||'{}')
+    let user=JSON.parse(localStorage.getItem('user')||'[{}]')
     let presente=true
     for(let i of user){
       if(i.name=='master' && i.pass=='1234'){
