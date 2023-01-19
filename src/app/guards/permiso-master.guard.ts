@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root'
 })
+/* guard para que solo el usuario master pueda añadir nuevos usuarios */
 export class PermisoMasterGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -21,7 +22,7 @@ export class PermisoMasterGuard implements CanActivate {
     }
   }
 
-  login(){
+  login(){/* validacion para diferencia si el master esta logeado */
     let statusValidate=JSON.parse(localStorage.getItem('logeado') || '{}');
     if(statusValidate.name=='master') return true
     else return false

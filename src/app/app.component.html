@@ -6,7 +6,8 @@
     <li class="h-full flex items-center hover:bg-slate-200 px-2"><a routerLink="/form">Formulario</a></li>
   </ul>
   <div class="h-full flex items-center hover:bg-slate-200 px-3">
-    <a routerLink="login" >Login</a>
+    <button class="bg-white hover:bg-red-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-5" (click)="logout()">Logout<span class="bi bi-box-arrow-right"></span></button>
+    <a routerLink="login">Login</a>
   </div>
 </nav>
 <router-outlet></router-outlet>

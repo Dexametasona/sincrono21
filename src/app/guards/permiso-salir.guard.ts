@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root'
 })
+/* guard para el form en caso que el usuario que ha modificado el form */
 export class PermisoSalirGuard implements CanDeactivate<boolean>{
   canDeactivate(component: boolean, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot | undefined): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     if(localStorage.getItem('complete')==='true') return true
