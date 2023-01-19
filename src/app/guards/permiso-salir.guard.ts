@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 export class PermisoSalirGuard implements CanDeactivate<boolean>{
   canDeactivate(component: boolean, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot | undefined): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     let statusForm=JSON.parse(localStorage.getItem('complete')||'{}')
+    console.log(statusForm)
     if(statusForm.reg) return true
     else if(statusForm.campos>0){
       return Swal.fire({

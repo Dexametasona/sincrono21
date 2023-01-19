@@ -31,7 +31,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.setItem('user',JSON.stringify(this.master))
-    localStorage.setItem('complete', 'true')
   
   }
 }

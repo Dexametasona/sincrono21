@@ -47,10 +47,10 @@ export class FormComponent implements OnInit {
     let bd=JSON.parse(localStorage.getItem('user')||'{}')
     for(let i of bd){
       if(this.form.value.name==i.name && this.form.value.pass==i.pass){
-        localStorage.setItem('complete',`{'campos':${camposFalta},'reg':true}`)
+        localStorage.setItem('complete',`{"campos":${camposFalta},"reg":true}`)
       }
       else{
-        localStorage.setItem('complete',`{'campos':${camposFalta},'reg':false}`)
+        localStorage.setItem('complete',`{"campos":${camposFalta},"reg":false}`)
       }
     }
     
