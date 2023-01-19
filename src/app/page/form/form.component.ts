@@ -24,15 +24,17 @@ export class FormComponent implements OnInit {
         title:'Registro exitoso',
         heightAuto:false
       })
+      this.cambio()
+      this.form.reset()
     }else{
       Swal.fire({
         icon:'error',
         title:'Registro fallido',
         heightAuto:false
       })
+      this.cambio()
     }
-    this.cambio()
-    this.form.reset()
+    
 
   }
   cambio(){

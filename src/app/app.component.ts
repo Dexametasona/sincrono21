@@ -30,7 +30,18 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    localStorage.setItem('user',JSON.stringify(this.master))
+    let user=JSON.parse(localStorage.getItem('user')||'{}')
+    let presente=true
+    for(let i of user){
+      if(i.name=='master' && i.pass=='1234'){
+        presente=true
+        break
+      }
+      else presente=false
+      if(presente==false){
+        localStorage.setItem('user',JSON.stringify(this.master))
+      }
+    }
   
   }
 }
