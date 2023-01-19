@@ -16,7 +16,7 @@ export class FormComponent implements OnInit {
   registrar(){
     if(this.form.valid){/* condiciona si se ejecuta la funcion */
       let listaUser=JSON.parse(localStorage.getItem('user') || '{}');
-      listaUser.push({name:this.form.value.user, pass:this.form.value.pass})/* crea un nuevo usuario */
+      listaUser.push({name:this.form.value.name, pass:this.form.value.pass})/* crea un nuevo usuario */
       localStorage.setItem('user',JSON.stringify(listaUser))/* sobrescribe el local storage con el nuevo user*/
       this.usuario=this.form.value /* almacena el nuevo user añadido*/
       Swal.fire({
@@ -40,16 +40,17 @@ export class FormComponent implements OnInit {
   cambio(){
     
     let camposFalta=0
-    if(this.form.get('name')?.value=='') camposFalta++
-    if(this.form.get('user')?.value=='') camposFalta++
-    if(this.form.get('email')?.value=='') camposFalta++
-    if(this.form.get('pass')?.value=='') camposFalta++
-    if(this.form.get('pass2')?.value=='') camposFalta++
+    if(this.form.get('name')?.value=='' || this.form.get('name')?.value==null) camposFalta++
+    if(this.form.get('user')?.value=='' || this.form.get('user')?.value==null) camposFalta++
+    if(this.form.get('email')?.value=='' || this.form.get('email')?.value==null) camposFalta++
+    if(this.form.get('pass')?.value=='' || this.form.get('pass')?.value==null) camposFalta++
+    if(this.form.get('pass2')?.value=='' || this.form.get('pass2')?.value==null) camposFalta++
 
     let bd=JSON.parse(localStorage.getItem('user')||'{}')
     for(let i of bd){
       if(this.form.value.name==i.name && this.form.value.pass==i.pass){
         localStorage.setItem('complete',`{"campos":${camposFalta},"reg":true}`)
+        break
       }
       else{
         localStorage.setItem('complete',`{"campos":${camposFalta},"reg":false}`)
