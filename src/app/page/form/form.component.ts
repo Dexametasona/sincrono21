@@ -24,7 +24,7 @@ export class FormComponent implements OnInit {
         title:'Registro exitoso',
         heightAuto:false
       })
-      this.cambio()
+      this.cambio() /* verifica si se registro el usuario */
       this.form.reset()
     }else{
       Swal.fire({
@@ -32,20 +32,20 @@ export class FormComponent implements OnInit {
         title:'Registro fallido',
         heightAuto:false
       })
-      this.cambio()
+      this.cambio()/* verifica si se registro el usuario */
     }
     
 
   }
   cambio(){
-    
+    /* verifica si los campos fueron llenados------------------------- */
     let camposFalta=0
     if(this.form.get('name')?.value=='' || this.form.get('name')?.value==null) camposFalta++
     if(this.form.get('user')?.value=='' || this.form.get('user')?.value==null) camposFalta++
     if(this.form.get('email')?.value=='' || this.form.get('email')?.value==null) camposFalta++
     if(this.form.get('pass')?.value=='' || this.form.get('pass')?.value==null) camposFalta++
     if(this.form.get('pass2')?.value=='' || this.form.get('pass2')?.value==null) camposFalta++
-
+    /* verifica si el usuario por registrar fue registrado exitosamente*/
     let bd=JSON.parse(localStorage.getItem('user')||'{}')
     for(let i of bd){
       if(this.form.value.name==i.name && this.form.value.pass==i.pass){
@@ -58,8 +58,9 @@ export class FormComponent implements OnInit {
     }
     
   }
+  
   ngOnInit(): void {
-    
+    /* formulario reactivo */
     this.form=this.fb.group({
       name:[
         '',

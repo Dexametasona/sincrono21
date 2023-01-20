@@ -11,8 +11,9 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   master=[{name:'master', pass:'1234'}]
   constructor(private route:Router){}
+  /* funcion para deslogearse */
   logout(){
-    let estado=JSON.parse(localStorage.getItem('logeado')||'{}')
+    let estado=JSON.parse(localStorage.getItem('logeado')||'{}')/* verifica estado de logeo */
     if(estado.status){
       Swal.fire({
           title: 'Seguro que desea cerrar sesión',
@@ -39,6 +40,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /* creador del usuario master */
     let user=JSON.parse(localStorage.getItem('user')||'[{}]')
     let presente=true
     for(let i of user){
